@@ -6,5 +6,4 @@ class User
 {
     protected $username;
     protected $name;
-
 }

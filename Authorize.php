@@ -9,8 +9,8 @@ class Authorize
     private $usr;
     public function __construct(User $usr)
     {
-        $this->id = $id;
-        $this->usr = $usr;
+        $this->id = $usr->id;
+        $this->usr = $usr->usr;
     }
 
     private function validate()

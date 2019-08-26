@@ -6,4 +6,7 @@ use yevheniikukhol\bot\DB;
 
 $db = new DB;
 
-$db->write();
+$res = $db->write(['username'=>'lol', 'name'=>'kek', 'hide'=>'dfvxc']);
+
+var_dump($res);
+exit;
