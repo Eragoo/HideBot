@@ -6,7 +6,8 @@ include "DB.php";
 
 $db = new DB();
 
-$res = $db->get('username');
+$q = 1;
+$res = $db->get('username', "id=$q");
 var_dump($res);
 
 
