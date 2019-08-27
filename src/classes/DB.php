@@ -1,12 +1,15 @@
 <?php
+require_once "src/interfaces/DB_interface.php";
 
-class DB
+use yevheniikukhol\HideBot\interfaces\DB_interface;
+
+class DB implements DB_interface
 {
     private $params = ['values'=>['usermane', 'name', 'hide'], 'table'=>'users'];
 
     private function getConnection()
     {
-        $pdo = new PDO();
+        $pdo = new PDO("mysql:host=localhost;dbname=cm51228_bot", "cm51228_bot", "366326434");
         return $pdo;
     }
 
