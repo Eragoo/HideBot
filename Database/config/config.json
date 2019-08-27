@@ -1,0 +1,5 @@
+{
+  "host" : "mysql:host=localhost;dbname=cm51228_bot",
+  "login" : "cm51228_bot",
+  "password" : "366326434"
+}
