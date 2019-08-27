@@ -6,10 +6,12 @@ error_reporting(E_ALL);
 require_once "src/classes/DB.php";
 require_once "src/classes/UserRegData.php";
 require_once "src/classes/Chat.php";
+require_once "src/classes/Help.php";
 
 use yevheniikukhol\HideBot\classes\Chat;
 use yevheniikukhol\HideBot\classes\DB;
 use yevheniikukhol\HideBot\classes\UserRegData;
+use \yevheniikukhol\HideBot\classes\Help;
 
 
 
@@ -32,6 +34,8 @@ $kek = new Chat($s);
 echo $kek->getChatId();
 echo "<br>";
 echo $kek->getMessage();
+echo "<br>";
+Help::run();
 
 
 
