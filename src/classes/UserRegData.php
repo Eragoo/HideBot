@@ -3,7 +3,7 @@
 
 namespace yevheniikukhol\HideBot\classes;
 use yevheniikukhol\HideBot\interfaces\UserRegData_interface;
-require_once "../interfaces/UserRegData_interface.php";
+require_once "src/interfaces/UserRegData_interface.php";
 
 
 class UserRegData

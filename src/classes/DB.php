@@ -1,8 +1,9 @@
 <?php
 namespace yevheniikukhol\HideBot\classes;
+use mysql_xdevapi\Exception;
 use yevheniikukhol\HideBot\interfaces\DB_interface;
 
-require_once "../interfaces/DB_interface.php";
+require_once "src/interfaces/DB_interface.php";
 
 
 class DB implements DB_interface
@@ -11,14 +12,14 @@ class DB implements DB_interface
 
     private function getConnection()
     {
-        $pdo = new PDO;
+        $pdo = new \PDO();
         return $pdo;
     }
 
     private function checkRes($res, String $str)
     {
         if (!$res){
-            throw new Exception($str);
+            throw new \Exception($str);
         }else{
             return true;
         }
@@ -46,7 +47,7 @@ class DB implements DB_interface
 
         $statement = $pdo->prepare($sql);
         $res = $statement->execute();
-        $elem = $statement->fetchAll(PDO::FETCH_ASSOC);
+        $elem = $statement->fetchAll(\PDO::FETCH_ASSOC);
 
         $this->checkRes($res, "Mysql response = FALSE in get() DB class");//подставить переменную которая детектит название данного метода
         return $elem;
@@ -65,7 +66,7 @@ class DB implements DB_interface
 
         $statement = $pdo->prepare($sql);
         $res = $statement->execute();
-        $count = $statement->fetchAll(PDO::FETCH_ASSOC);
+        $count = $statement->fetchAll(\PDO::FETCH_ASSOC);
 
         $this->checkRes($res, "Mysql response = FALSE in getCount() DB class");
         return $count[0]['count'];

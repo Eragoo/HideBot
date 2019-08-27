@@ -8,6 +8,8 @@ require_once "src/classes/UserRegData.php";
 use yevheniikukhol\HideBot\classes\DB;
 use yevheniikukhol\HideBot\classes\UserRegData;
 
+
+
 $db = new DB();
 
 $q = 8;
