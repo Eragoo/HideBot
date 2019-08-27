@@ -2,9 +2,14 @@
 
 
 namespace yevheniikukhol\HideBot\classes;
-use yevheniikukhol\HideBot\interfaces\UserRegData_interface;
 require_once "src/interfaces/UserRegData_interface.php";
+use yevheniikukhol\HideBot\interfaces\UserRegData_interface;
 
+/**
+ * Class UserRegData
+ * @package yevheniikukhol\HideBot\classes
+ * used for keep user type-data and next compare it with user data from database
+ */
 
 class UserRegData
 {

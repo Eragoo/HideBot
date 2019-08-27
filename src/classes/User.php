@@ -1,7 +1,11 @@
 <?php
 
 namespace yevheniikukhol\HideBot\classes;
-
+/**
+ * Class User
+ * @package yevheniikukhol\HideBot\classes
+ * here keeps user data from database after comparing with user type data
+ */
 class User
 {
     static $username;

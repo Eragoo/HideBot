@@ -1,9 +1,9 @@
 <?php
 namespace yevheniikukhol\HideBot\classes;
-use mysql_xdevapi\Exception;
-use yevheniikukhol\HideBot\interfaces\DB_interface;
 
 require_once "src/interfaces/DB_interface.php";
+use mysql_xdevapi\Exception;
+use yevheniikukhol\HideBot\interfaces\DB_interface;
 
 
 class DB implements DB_interface
@@ -12,7 +12,7 @@ class DB implements DB_interface
 
     private function getConnection()
     {
-        $pdo = new \PDO();
+        $pdo = new \PDO("mysql:host=localhost;dbname=cm51228_bot", "cm51228_bot", "366326434");
         return $pdo;
     }
 
