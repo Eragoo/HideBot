@@ -2,18 +2,13 @@
 
 namespace yevheniikukhol\bot\Authorize;
 
+require_once '../interfaces/Authorize_interface.php';
+use yevheniikukhol\HideBot\interfaces\Authorize_interface;
+
 
 class Authorize
 {
-    private $id;
-    private $usr;
-    public function __construct(User $usr)
-    {
-        $this->id = $usr->id;
-        $this->usr = $usr->usr;
-    }
-
-    private function validate()
+    public function login()
     {
 
     }

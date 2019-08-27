@@ -1,7 +1,9 @@
 <?php
-require_once "src/interfaces/DB_interface.php";
-
+namespace yevheniikukhol\HideBot\classes;
 use yevheniikukhol\HideBot\interfaces\DB_interface;
+
+require_once "../interfaces/DB_interface.php";
+
 
 class DB implements DB_interface
 {
@@ -9,7 +11,7 @@ class DB implements DB_interface
 
     private function getConnection()
     {
-        $pdo = new PDO();
+        $pdo = new PDO;
         return $pdo;
     }
 
