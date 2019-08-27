@@ -1,5 +1,4 @@
 <?php
-
 namespace yevheniikukhol\HideBot\interfaces;
 
 interface DB_interface

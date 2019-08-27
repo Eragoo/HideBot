@@ -1,12 +1,12 @@
 <?php
 
-require_once "Database/DB.php";
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+require_once "src/classes/DB.php";
 
-use yevheniikukhol\bot\DB;
+$db = new DB();
 
-$db = new DB;
-
-$res = $db->write(['username'=>'lol', 'name'=>'kek', 'hide'=>'dfvxc']);
-
+$q = 1;
+$res = $db->get('username', "id=$q");
 var_dump($res);
-exit;
