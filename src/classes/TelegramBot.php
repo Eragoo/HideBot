@@ -11,7 +11,7 @@ use yevheniikukhol\HideBot\commands\HelpCommand;
 
 class TelegramBot
 {
-    const TOKEN = '658687388:AAEddwfHFShJrFtlcV5r9b0WYEXzijCG-ec';
+    const TOKEN = '';
     private static $result;
     private static $telegram;
     private static $chat_params;
@@ -76,7 +76,7 @@ class TelegramBot
         self::getApiObj();
         self::getResult();
         self::commandLoad();
-        //self::grabPassword();
+        self::grabPassword();
         $update = self::$telegram->commandsHandler(true);
 
     }
