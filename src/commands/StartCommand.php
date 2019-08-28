@@ -14,8 +14,17 @@ class StartCommand extends Command
 
     public function handle()
     {
+        $res = $this->getWebhookUpdates();
         $this->replyWithMessage(['text' => 'Hello! Welcome to our bot, Here are our available commands:']);
         $this->replyWithChatAction(['action' => Actions::TYPING]);
+        do{
+            $text = $res["message"]["text"];
+        }
+        while($text);
+        $this->replyWithMessage(['text' => $text]);
+
+
+
         $this->triggerCommand('help');
 
     }

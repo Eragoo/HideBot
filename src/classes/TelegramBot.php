@@ -6,15 +6,15 @@ include('vendor/autoload.php');
 include('src/commands/StartCommand.php');
 include('src/commands/HelpCommand.php');
 use Telegram\Bot\Api;
-use yevheniikukhol\HideBot\commands\HelpCommand as ApiHelpCommand;
 use yevheniikukhol\HideBot\commands\StartCommand;
 use yevheniikukhol\HideBot\commands\HelpCommand;
 
 class TelegramBot
 {
-    const TOKEN = '';
+    const TOKEN = '658687388:AAEddwfHFShJrFtlcV5r9b0WYEXzijCG-ec';
     private static $result;
     private static $telegram;
+    private static $chat_params;
 
     public static function start()
     {
@@ -28,7 +28,8 @@ class TelegramBot
         self::$telegram = $telegram;
     }
 
-    private static function getResult(){
+    private static function getResult()
+    {
         $result = self::$telegram->getWebhookUpdates();
         self::$result = $result;
     }
@@ -37,12 +38,30 @@ class TelegramBot
     {
         $text = self::$result["message"]["text"];
         $chat_id = self::$result["message"]["chat"]["id"];
-        return array($text, $chat_id);
+        return ['text'=>$text, 'chat_id'=>$chat_id];
     }
 
     private static function getUserParams()
     {
         $username = self::$result['message']['from']['username'];
+    }
+
+    private static function grabPassword()
+    {
+        $res = self::getChatParams();
+        $text = $res['text'];
+        $chat_id = $res['chat_id'];
+
+        $values = [];
+        $response = preg_match('/(password|pass):?\s(.+)/i', $text, $values);
+        if ($response) {
+            $txt = strtolower($values[1]);
+            $pass = $values[2];
+            if ($txt == 'password' or $txt == 'pass'){
+                self::$telegram->sendMessage(['chat_id'=>$chat_id, 'text'=>$pass]);
+            }
+        }
+
     }
 
     private static function commandLoad()
@@ -57,6 +76,7 @@ class TelegramBot
         self::getApiObj();
         self::getResult();
         self::commandLoad();
+        //self::grabPassword();
         $update = self::$telegram->commandsHandler(true);
 
     }

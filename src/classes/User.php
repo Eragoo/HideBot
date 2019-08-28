@@ -8,25 +8,25 @@ namespace yevheniikukhol\HideBot\classes;
  */
 class User
 {
-    static $username;
-    static $name;
+    private $username;
+    private $name;
 
-    static function setUsername(String $username)
+    public function setUsername(String $username)
     {
         self::$username = $username;
     }
 
-    static function setName(String $name)
+    public function setName(String $name)
     {
         self::$name = $name;
     }
 
-    static function getUsername(): String
+    public function getUsername(): String
     {
         return self::$username;
     }
 
-    static function getName(): String
+    public function getName(): String
     {
         return self::$name;
     }

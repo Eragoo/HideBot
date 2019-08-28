@@ -8,7 +8,7 @@ use yevheniikukhol\HideBot\interfaces\Authorize_interface;
 
 class Authorize
 {
-    public function login()
+    public function login($userRegData)
     {
 
     }

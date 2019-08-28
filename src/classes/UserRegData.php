@@ -52,7 +52,7 @@ class UserRegData
     /**
      * @param String $name
      */
-    public function setName(String $name)
+    protected function setName(String $name)
     {
         $this->name = $name;
     }
@@ -60,7 +60,7 @@ class UserRegData
     /**
      * @param String $password
      */
-    public function setPassword(String $password)
+    protected function setPassword(String $password)
     {
         $this->password = $password;
     }
@@ -68,7 +68,7 @@ class UserRegData
     /**
      * @param String $username
      */
-    public function setUsername(String $username)
+    protected function setUsername(String $username)
     {
         $this->username = $username;
     }
