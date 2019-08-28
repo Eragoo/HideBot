@@ -5,9 +5,8 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 
-require_once "src/classes/TelegramGetFactory.php";
+require_once "src/classes/TelegramBot.php";
+use yevheniikukhol\HideBot\classes\TelegramBot;
 
-use yevheniikukhol\HideBot\classes\TelegramGetFactory;
-
-TelegramGetFactory::sendTestMessage();
+TelegramBot::start();
 
