@@ -14,19 +14,19 @@ use yevheniikukhol\HideBot\interfaces\Chat_interface;
 
 class Chat implements Chat_interface
 {
-    private $chatId;
+    private $chat_id;
     private $message;
 
     public function __construct(Array $array)
     {
-        $this->chatId = $array['chatId'];
+        $this->chat_id = $array['chat_id'];
         $this->message = $array['message'];
     }
 
     /**
      * @return Int
      */
-    public function getChatId(): Int
+    public function getChat_id(): Int
     {
         return $this->chatId;
     }
@@ -40,11 +40,11 @@ class Chat implements Chat_interface
     }
 
     /**
-     * @param Int $chatId
+     * @param Int $chat_id
      */
-    protected function setChatId(Int $chatId)
+    protected function setChat_id(Int $chat_id)
     {
-        $this->chatId = $chatId;
+        $this->chat_id = $chat_id;
     }
 
     /**

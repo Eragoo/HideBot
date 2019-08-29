@@ -6,10 +6,12 @@ include('vendor/autoload.php');
 include('src/commands/StartCommand.php');
 include('src/commands/HelpCommand.php');
 include ('src/classes/Logging.php');
+include ('src/classes/Chat.php');
 use Telegram\Bot\Api;
 use yevheniikukhol\HideBot\classes\Logging as Logs;
 use yevheniikukhol\HideBot\commands\StartCommand;
 use yevheniikukhol\HideBot\commands\HelpCommand;
+use yevheniikukhol\HideBot\classes\Chat;
 
 class TelegramBot
 {
@@ -23,24 +25,24 @@ class TelegramBot
         self::createBot();
     }
 
-    private static function getApiObj()
+    private static function startApi()
     {
         $telegram = new Api(self::TOKEN);
         $response = $telegram->getMe();
         self::$telegram = $telegram;
     }
 
-    private static function getResult()
+    private static function getWhUpdates()
     {
         $result = self::$telegram->getWebhookUpdates();
         self::$result = $result;
     }
 
-    private static function getChatParams() : array
+    private static function getChat(): Chat
     {
-        $text = self::$result["message"]["text"];
-        $chat_id = self::$result["message"]["chat"]["id"];
-        return ['text'=>$text, 'chat_id'=>$chat_id];
+        $message = self::$result["message"]["text"] ?? '';
+        $chat_id = self::$result["message"]["chat"]["id"] ?? 0;
+        return new Chat(['chat_id'=>$chat_id, 'message'=>$message]);
     }
 
     private static function getUserParams()
@@ -53,12 +55,13 @@ class TelegramBot
         $start = new StartCommand();
         $help = new HelpCommand();
         self::$telegram->addCommands([$start, $help]);
+        self::$telegram->commandsHandler(true);
     }
 
     private static function startLogging()
     {
-        $response = self::getChatParams();
-        $message = $response['text'];
+        $chat = self::getChat();
+        $message = $chat->getMessage();
         if ($message){
             Logs::start($message);
         }
@@ -66,13 +69,10 @@ class TelegramBot
 
     private static function createBot()
     {
-        self::getApiObj();
-        self::getResult();
+        self::startApi();
+        self::getWhUpdates();
         self::commandLoad();
         self::startLogging();
-        self::grabPassword();
-        $update = self::$telegram->commandsHandler(true);
-
     }
 
 
