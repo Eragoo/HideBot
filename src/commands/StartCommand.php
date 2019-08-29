@@ -17,7 +17,6 @@ class StartCommand extends Command
         $this->replyWithMessage(['text' => 'Hello! Welcome to our bot, Here are our available commands:']);
         $this->replyWithChatAction(['action' => Actions::TYPING]);
         $this->triggerCommand('help');
-
     }
 
 }
