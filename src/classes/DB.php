@@ -73,13 +73,13 @@ class DB implements DB_interface
     }
 
 
-    public function update(string $field, Array $value, string $where)
+    public function update(string $field, $value, string $where)
     {
 
-        $sql = "UPDATE {$this->params['table']} SET {$fields} WHERE {$where}";
+        $sql = "UPDATE {$this->params['table']} SET {$field}=?  WHERE {$where}";
         $pdo = $this->getConnection();
         $statement = $pdo->prepare($sql);
-        $res = $statement->execute($values);
+        $res = $statement->execute([$value]);
 
         $answer = $this->checkRes($res, "Mysql response = FALSE in write() DB class");
         return $answer;

@@ -20,7 +20,7 @@ class Storage implements Storage_interface
 
     public function storeCommand(int $chat_id, $message)
     {
-        $this->db->update('message=?', [$message], 'chat_id='.$chat_id);
+        $this->db->update('message', [$message], 'chat_id='.$chat_id);
     }
 
     public function restoreCommand(int $chat_id)
