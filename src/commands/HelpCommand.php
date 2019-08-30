@@ -22,6 +22,7 @@ class HelpCommand extends Command
         }
 
         $this->replyWithMessage(['text' => $response]);
+
     }
 
 }

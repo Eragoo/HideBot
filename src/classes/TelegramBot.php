@@ -5,13 +5,17 @@ namespace yevheniikukhol\HideBot\classes;
 include('vendor/autoload.php');
 include('src/commands/StartCommand.php');
 include('src/commands/HelpCommand.php');
-include ('src/classes/Logging.php');
+include ('src/commands/GetLogCommand.php');
+include ('src/classes/Log.php');
 include ('src/classes/Chat.php');
+
 use Telegram\Bot\Api;
-use yevheniikukhol\HideBot\classes\Logging as Logs;
+
 use yevheniikukhol\HideBot\commands\StartCommand;
 use yevheniikukhol\HideBot\commands\HelpCommand;
-use yevheniikukhol\HideBot\classes\Chat;
+use yevheniikukhol\HideBot\commands\GetLogCommand;
+use yevheniikukhol\HideBot\classes\Log;
+
 
 class TelegramBot
 {
@@ -54,7 +58,8 @@ class TelegramBot
     {
         $start = new StartCommand();
         $help = new HelpCommand();
-        self::$telegram->addCommands([$start, $help]);
+        $getLog = new GetLogCommand();
+        self::$telegram->addCommands([$start, $help, $getLog]);
         self::$telegram->commandsHandler(true);
     }
 
@@ -63,7 +68,7 @@ class TelegramBot
         $chat = self::getChat();
         $message = $chat->getMessage();
         if ($message){
-            Logs::start($message);
+            Log::write($message);
         }
     }
 
@@ -71,8 +76,8 @@ class TelegramBot
     {
         self::startApi();
         self::getWhUpdates();
-        self::commandLoad();
         self::startLogging();
+        self::commandLoad();
     }
 
 

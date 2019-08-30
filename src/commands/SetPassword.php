@@ -23,12 +23,7 @@ class SetPassword extends Command
         $this->replyWithChatAction(['action' => Actions::TYPING]);
         $commands = $this->getTelegram()->getCommands();
 
-        $response = '';
-        foreach ($commands as $name => $command) {
-            $response .= sprintf('/%s - %s' . PHP_EOL, $name, $command->getDescription());
-        }
-
-        $this->replyWithMessage(['text' => $response]);
+        $this->replyWithMessage(['text' => 'Enter your password']);
     }
 
 }
