@@ -1,5 +1,6 @@
 <?php
 namespace yevheniikukhol\HideBot\commands;
+
 require_once ('src/commands/Command.php');
 
 class Helpi extends Command
@@ -10,7 +11,7 @@ class Helpi extends Command
 
         if (empty($text))
         {
-            $answer = $telegram->getUser()->getUsername();
+            $answer = 'lol';
             $telegram->sendMessage($chat_id, $answer);
         }else{
             $answer = "Your message - ". $text;

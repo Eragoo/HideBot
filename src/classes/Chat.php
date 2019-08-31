@@ -15,7 +15,7 @@ class Chat implements Chat_interface
     {
         $this->chat_id = $chat_id;
     }
-    public function getId(): Int
+    public function getId()
     {
         return $this->chat_id;
     }

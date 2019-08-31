@@ -1,6 +1,8 @@
 <?php
 namespace yevheniikukhol\HideBot\commands;
 
+require_once ('src/commands/Command.php');
+
 class Def extends Command
 {
     public static function start($telegram, $text)
@@ -10,9 +12,10 @@ class Def extends Command
         if (empty($text))
         {
             $name = $telegram->getUser()->getName();
-            $telegram->sendMessage($chat_id, "$name, Вы вызвали дефолтную комманду");
+            $telegram->sendMessage($chat_id, 'Your name is : '.$name);
         }else{
-            $answer = "Зачем вы мне написали - ". $text;
+
+            $answer = "You write me : ". $text;
             $telegram->sendMessage($chat_id, $answer);
 
         }

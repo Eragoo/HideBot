@@ -3,7 +3,7 @@
 
 namespace yevheniikukhol\HideBot\classes;
 include ('src/commands/Helpi.php');
-//include ('src/commands/Def.php');
+include ('src/commands/Def.php');
 
 use yevheniikukhol\HideBot\commands\Helpi;
 use yevheniikukhol\HideBot\commands\Def;
@@ -18,8 +18,8 @@ class Commands
                 Helpi::start($telegram, $text);
                 break;
 
-//            default:
-//                Def::start($telegram, $text);
+            default:
+                Def::start($telegram, $text);
         }
     }
 }
