@@ -27,19 +27,25 @@ class Message implements Message_interface
         return new Chat($this->chat_id);
     }
 
-    public  function  getCommand(): string
-    {
-        $arr = [];
-        preg_match('/(\/\w*)/', $this->message, $arr);
-        $this->command = $arr[1];
+    public  function  getCommand()
+    {   $message = $this->message;
+        $arr = explode(' ', $message);
+        if (substr($arr[0], 0, 1) == '/'){
+            $this->command = $arr[0];
+        }else{
+            $this->command = false;
+        }
+
         return $this->command;
     }
 
-    public function getParams($command): string
+    public function getParams($command)
     {
-        $command = $this->command;
-        $arr = [];
-        preg_match('/\/\w+\s(\w+)/', $this->message, $arr);
-        return $arr[1];
+        $message = $this->message;
+        if (substr($message, 0, 1) != '/'){
+            return $message;
+        }else{
+            return false;
+        }
     }
 }

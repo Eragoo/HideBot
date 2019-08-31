@@ -6,7 +6,7 @@ include('vendor/autoload.php');
 
 use Telegram\Bot\Api;
 
-class Telegram
+class TelegramBot
 {
     const TOKEN = '';
     private $telegram;
@@ -24,10 +24,10 @@ class Telegram
         $this->telegram = $telegram;
     }
 
-    protected function getWhUpdates()
+    private function getWhUpdates()
     {
         $result = $this->telegram->getWebhookUpdates();
-        self::$result = $result;
+        $this->result = $result;
     }
 
 
@@ -36,6 +36,12 @@ class Telegram
         $message = $this->result["message"]["text"] ?? '';
         $chat_id = $this->result["message"]["chat"]["id"] ?? 0;
         return new Message(['chat_id'=>$chat_id, 'message'=>$message]);
+    }
+
+    public  function  sendMessage($chat_id, $answer)
+    {
+        $this->telegram->sendMessage(['chat_id'=>$chat_id, 'text'=>$answer]);
+
     }
 
 

@@ -30,7 +30,7 @@ class DB implements DB_interface
         $pdo = $this->getConnection();
         $sql = "INSERT INTO {$this->params['table']} ({$this->params['values'][0]}, {$this->params['values'][1]}) VALUE (?,?)";
         $statement = $pdo->prepare($sql);
-        $res = $statement->execute($values);
+        $res = $statement->execute([$values[$this->params['values'][0]], $values[$this->params['values'][1]]]);
 
         $answer = $this->checkRes($res, "Mysql response = FALSE in write() DB class");
         return $answer;
