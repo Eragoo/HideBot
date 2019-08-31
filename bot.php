@@ -11,35 +11,13 @@ include ('src/classes/Chat.php');
 include ('src/classes/Message.php');
 include ('src/classes/Storage.php');
 include ('src/classes/DB.php');
+include ('src/classes/Commands.php');
 
 
 use yevheniikukhol\HideBot\classes\Storage;
 use yevheniikukhol\HideBot\classes\TelegramBot;
 use yevheniikukhol\HideBot\classes\DB;
-
-function helpi($telegram, $text)
-{
-    if (empty($text))
-    {
-        $answer = "kek";
-        $telegram->sendMessage(490271399, $answer);
-    }else{
-        $answer = "Your message - ". $text;
-        $telegram->sendMessage(490271399, $answer);
-    }
-
-}
-
-function chooseMethod($command, $telegram, $text)
-{
-    switch ($command){
-        case "/helpi":
-            helpi($telegram, $text);
-            break;
-
-    }
-
-}
+use yevheniikukhol\HideBot\classes\Commands;
 
 
 $storage = new Storage();
@@ -55,7 +33,8 @@ if (empty($command)){
 
 $storage->storeCommand($message->getChat()->getId(), $command);
 
-chooseMethod($command, $telegram, $text);
+Commands::chooseCommand($command, $telegram, $text);
+
 
 
 

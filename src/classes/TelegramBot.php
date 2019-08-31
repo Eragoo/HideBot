@@ -8,7 +8,7 @@ use Telegram\Bot\Api;
 
 class TelegramBot
 {
-    const TOKEN = '';
+    const TOKEN = '658687388:AAEddwfHFShJrFtlcV5r9b0WYEXzijCG-ec';
     private $telegram;
     private $result;
 
