@@ -1,34 +1,34 @@
 <?php
 
 namespace yevheniikukhol\HideBot\classes;
-/**
- * Class User
- * @package yevheniikukhol\HideBot\classes
- * here keeps user data from database after comparing with user type data
- */
+
 class User
 {
-    private $username;
-    private $name;
+  private $id;
+  private $username;
+  private $name;
 
-    public function setUsername(String $username)
-    {
-        self::$username = $username;
-    }
+  public function __construct($id, $username, $name)
+  {
+      $this->id = $id;
+      $this->username = $username;
+      $this->name = $name;
+  }
 
-    public function setName(String $name)
-    {
-        self::$name = $name;
-    }
+  public function getId(): int
+  {
+      return $this->id;
+  }
 
-    public function getUsername(): String
-    {
-        return self::$username;
-    }
+  public function getUsername(): string
+  {
+      return $this->username;
+  }
 
-    public function getName(): String
-    {
-        return self::$name;
-    }
+  public function getName(): string
+  {
+      return $this->name;
+  }
+
 }
 

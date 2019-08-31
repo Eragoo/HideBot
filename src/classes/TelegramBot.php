@@ -33,8 +33,8 @@ class TelegramBot
 
     public function getMessage(): Message
     {
-        $message = $this->result["message"]["text"] ?? '';
-        $chat_id = $this->result["message"]["chat"]["id"] ?? 0;
+        $message = $this->result['message']['text'] ?? '';
+        $chat_id = $this->result['message']['chat']['id'] ?? 0;
         return new Message(['chat_id'=>$chat_id, 'message'=>$message]);
     }
 
@@ -44,5 +44,12 @@ class TelegramBot
 
     }
 
+    public function getUser(): User
+    {
+        $id = $this->result['message']['from']['id'] ?? 0;
+        $username = $this->result["message"]["from"]["username"] ?? '';
+        $name = $this->result["message"]["from"]["first_name"] ?? '';
+        return new User($id, $username, $name);
+    }
 
 }

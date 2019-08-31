@@ -1,8 +1,7 @@
 <?php
 namespace yevheniikukhol\HideBot\commands;
-require_once ('src/commands/Command.php');
 
-class Helpi extends Command
+class Def extends Command
 {
     public static function start($telegram, $text)
     {
@@ -10,13 +9,12 @@ class Helpi extends Command
 
         if (empty($text))
         {
-            $answer = $telegram->getUser()->getUsername();
-            $telegram->sendMessage($chat_id, $answer);
+            $name = $telegram->getUser()->getName();
+            $telegram->sendMessage($chat_id, "$name, Вы вызвали дефолтную комманду");
         }else{
-            $answer = "Your message - ". $text;
+            $answer = "Зачем вы мне написали - ". $text;
             $telegram->sendMessage($chat_id, $answer);
 
         }
-
     }
 }
