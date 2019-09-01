@@ -18,7 +18,7 @@ class SetPassword extends Command
             $answer = 'Введи пароль от 3 до 20 символов.';
             $telegram->sendMessage($chat_id, $answer);
         }else{
-            $pass = password_hash($text, PASSWORD_DEFAULT);
+            $pass = crypt(trim($text));
             $db = new DB();
             $db_pass = $db->get('pass', 'chat_id='.$chat_id);
             if (empty($db_pass[0]['pass'])){
