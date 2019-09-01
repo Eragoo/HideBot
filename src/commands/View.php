@@ -24,7 +24,7 @@ class View extends Command
             if (hash_equals($db_pass, crypt($input_pass, $db_pass)))
             {
                 $hide = $db->get('hide', 'chat_id='.$chat_id);
-                $msg = convert_uudecode($hide[0]['hide']);
+                $msg = '<b>Ваши данные:</b>'.PHP_EOL.convert_uudecode($hide[0]['hide']);
             }else{
                 $msg = "<i>Неверный пароль.</i>";
             }

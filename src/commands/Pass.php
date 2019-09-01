@@ -2,12 +2,11 @@
 
 
 namespace yevheniikukhol\HideBot\commands;
-require_once ("src/commands/SetPassword.php");
 require_once ("src/classes/DB.php");
 
 use yevheniikukhol\HideBot\classes\DB;
 
-class SetPassword extends Command
+class Pass extends Command
 {
     public static function start($telegram, $text)
     {
@@ -24,7 +23,7 @@ class SetPassword extends Command
             if (empty($db_pass[0]['pass'])){
                 $res = $db->update('pass', $pass, "chat_id=".$chat_id);
                 if ($res){
-                    $msg = "<i>Пароль успешно задан!</i>".PHP_EOL."<i>Введите команду</i> /setHide <i>eсли хотите воспользоваться хранилищем</i>";
+                    $msg = "<i>Пароль успешно задан!</i>".PHP_EOL."<i>Введите команду</i> /add <i>eсли хотите воспользоваться хранилищем</i>";
                 }else{
                     $msg = "<i>Произошла какая-то неведомая ошибка!</i>";
                 }
