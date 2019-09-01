@@ -8,7 +8,7 @@ use yevheniikukhol\HideBot\interfaces\DB_interface;
 
 class DB implements DB_interface
 {
-    private $params = ['values'=>['chat_id', 'message'], 'table'=>'test'];
+    private $params = ['values'=>['chat_id', 'command', 'pass', 'hide'], 'table'=>'test'];
 
     private function getConnection()
     {

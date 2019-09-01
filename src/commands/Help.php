@@ -1,9 +1,10 @@
 <?php
-namespace yevheniikukhol\HideBot\commands;
 
+
+namespace yevheniikukhol\HideBot\commands;
 require_once ('src/commands/Command.php');
 
-class Def extends Command
+class Help extends Command
 {
     public static function start($telegram, $text)
     {
@@ -11,7 +12,7 @@ class Def extends Command
 
         if (empty($text))
         {
-            $msg = "Я не знаю как реагировать на такое :(".PHP_EOL."Введи /help чтобы узнать список доступных комманд!";
+            $msg = "Cписок достуных комманд:".PHP_EOL."/start - стартовое сообщение".PHP_EOL."/help - список доступных комманд";
             $telegram->sendMessage($chat_id, $msg);
         }
     }

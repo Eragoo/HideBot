@@ -24,9 +24,9 @@ class Storage implements Storage_interface
 
         if (!$count)
         {
-            $this->db->write(['chat_id'=>$chat_id, 'message'=>$message]);
+            $this->db->write(['chat_id'=>$chat_id, 'command'=>$message]);
         }else{
-            $this->db->update('message', $message, 'chat_id='.$chat_id);
+            $this->db->update('command', $message, 'chat_id='.$chat_id);
         }
     }
 
@@ -34,8 +34,8 @@ class Storage implements Storage_interface
     {
         $count = $this->db->getCount("chat_id=".$chat_id);
         if ($count){
-            $res = $this->db->get('message', 'chat_id='.$chat_id);
-            return $res[0]['message'];
+            $res = $this->db->get('command', 'chat_id='.$chat_id);
+            return $res[0]['command'];
         }else{
             return false;
         }
