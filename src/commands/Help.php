@@ -12,8 +12,8 @@ class Help extends Command
 
         if (empty($text))
         {
-            $msg = "Cписок достуных комманд:".PHP_EOL."/start - стартовое сообщение".PHP_EOL."/help - список доступных комманд";
-            $telegram->sendMessage($chat_id, $msg);
+            $msg = "<b>Cписок достуных комманд:</b>".PHP_EOL."/start - <i>стартовое сообщение</i>".PHP_EOL."/setPassword - <i>задать пароль от хранилища</i>".PHP_EOL."/setHide - <i>задать данные, которые будут сохранены в хранилище</i>".PHP_EOL."/view - <i>получить данные из хранилища</i>".PHP_EOL."/reset - <i>сбросить пароль и хранимые данные</i>".PHP_EOL."/help - <i>список доступных комманд</i>";
+            $telegram->sendMessage($chat_id, $msg, 'HTML');
         }
     }
 }

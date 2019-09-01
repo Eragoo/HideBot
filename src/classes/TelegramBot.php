@@ -11,7 +11,7 @@ use Telegram\Bot\Api;
 
 class TelegramBot
 {
-    const TOKEN = '658687388:AAEddwfHFShJrFtlcV5r9b0WYEXzijCG-ec';
+    const TOKEN = '';
     private $telegram;
     private $result;
 
@@ -41,9 +41,9 @@ class TelegramBot
         return new Message(['chat_id'=>$chat_id, 'message'=>$message]);
     }
 
-    public  function  sendMessage($chat_id, $answer)
+    public  function  sendMessage($chat_id, $answer, $reply='')
     {
-        $this->telegram->sendMessage(['chat_id'=>$chat_id, 'text'=>$answer]);
+        $this->telegram->sendMessage(['chat_id'=>$chat_id, 'text'=>$answer, 'parse_mode'=>$reply]);
     }
 
     public function getUser(): User

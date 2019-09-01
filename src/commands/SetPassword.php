@@ -15,8 +15,8 @@ class SetPassword extends Command
 
         if (empty($text))
         {
-            $answer = 'Введи пароль от 3 до 20 символов.';
-            $telegram->sendMessage($chat_id, $answer);
+            $answer = '<b>Введите пароль от 3 до 20 символов.</b>';
+            $telegram->sendMessage($chat_id, $answer, 'HTML');
         }else{
             $pass = crypt(trim($text));
             $db = new DB();
@@ -24,14 +24,14 @@ class SetPassword extends Command
             if (empty($db_pass[0]['pass'])){
                 $res = $db->update('pass', $pass, "chat_id=".$chat_id);
                 if ($res){
-                    $msg = "Пароль успешно задан!";
+                    $msg = "<i>Пароль успешно задан!</i>".PHP_EOL."<i>Введите команду</i> /setHide <i>eсли хотите воспользоваться хранилищем</i>";
                 }else{
-                    $msg = "Произошла какая-то неведомая ошибка!";
+                    $msg = "<i>Произошла какая-то неведомая ошибка!</i>";
                 }
             }else{
-                $msg = "Вы не можете задать пароль, так как он уже был задан.";
+                $msg = "<i>Вы не можете задать пароль, так как он уже был задан</i>";
             }
-            $telegram->sendMessage($chat_id, $msg);
+            $telegram->sendMessage($chat_id, $msg, 'HTML');
 
         }
     }

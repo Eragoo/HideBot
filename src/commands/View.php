@@ -14,8 +14,8 @@ class View extends Command
 
         if (empty($text))
         {
-            $msg = 'Введите пароль.';
-            $telegram->sendMessage($chat_id, $msg);
+            $msg = '<b>Введите пароль</b>';
+            $telegram->sendMessage($chat_id, $msg, 'HTML');
         }else{
             $db = new DB();
             $db_get_pass = $db->get('pass', 'chat_id='.$chat_id);
@@ -26,10 +26,10 @@ class View extends Command
                 $hide = $db->get('hide', 'chat_id='.$chat_id);
                 $msg = convert_uudecode($hide[0]['hide']);
             }else{
-                $msg = "Неверный пароль.";
+                $msg = "<i>Неверный пароль.</i>";
             }
 
-            $telegram->sendMessage($chat_id, $msg);
+            $telegram->sendMessage($chat_id, $msg, 'HTML');
         }
     }
 }

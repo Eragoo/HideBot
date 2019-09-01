@@ -15,8 +15,8 @@ class SetHide extends Command
 
         if (empty($text))
         {
-            $msg = "Введите пароль и в двойных фигурных скобках текст, который хотите скрыть.".PHP_EOL."Например:".PHP_EOL."password {{текст, который будет помещен в хранилище}}";
-            $telegram->sendMessage($chat_id, $msg);
+            $msg = "<b>Введите пароль и в двойных фигурных скобках текст, который хотите скрыть.</b>".PHP_EOL."<i>Пример:</i>".PHP_EOL."<code>password {{текст, который будет помещен в хранилище}}</code>";
+            $telegram->sendMessage($chat_id, $msg, 'HTML');
         }else{
             $db = new DB();
             $arr = [];
@@ -34,21 +34,21 @@ class SetHide extends Command
                     if (!empty($hide)){
                         $res = $db->update('hide', $hide, 'chat_id='.$chat_id);
                         if ($res){
-                            $msg = "Поле записано!";
+                            $msg = "<i>Поле записано!</i>";
                         }else{
-                            $msg = "Произошла занятная ошибка!";
+                            $msg = "<i>Произошла занятная ошибка!</i>";
                         }
                     }else{
-                        $msg = "Пустое значение не может быть задано!";
+                        $msg = "<i>Пустое значение не может быть задано!</i>";
                     }
                 }else{
-                    $msg = "Поле уже задано!";
+                    $msg = "<i>Поле уже задано!</i>";
                 }
             }else{
-                $msg = "Невереный пароль";
+                $msg = "<i>Невереный пароль!</i>";
             }
 
-            $telegram->sendMessage($chat_id, $msg);
+            $telegram->sendMessage($chat_id, $msg, 'HTML');
 
         }
     }

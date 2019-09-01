@@ -15,8 +15,8 @@ class Reset extends Command
 
         if (empty($text))
         {
-            $msg = "Введите пароль чтобы удалить все данные";
-            $telegram->sendMessage($chat_id, $msg);
+            $msg = "<b>Введите пароль чтобы удалить все данные</b>";
+            $telegram->sendMessage($chat_id, $msg, 'HTML');
         }else{
             $db = new DB();
             $db_get_pass = $db->get('pass', 'chat_id='.$chat_id);
@@ -26,15 +26,15 @@ class Reset extends Command
             {
                 $res = $db->delete('chat_id='.$chat_id);
                 if ($res){
-                    $msg = "Данные успешно удалены";
+                    $msg = "<i>Данные успешно удалены</i>";
                 }else{
-                    $msg = "Ошибка удаления";
+                    $msg = "<i>Ошибка удаления</i>";
                 }
             }else{
-                $msg = "Неверный пароль";
+                $msg = "<i>Неверный пароль</i>";
             }
 
-            $telegram->sendMessage($chat_id, $msg);
+            $telegram->sendMessage($chat_id, $msg, 'HTML');
         }
     }
 }
