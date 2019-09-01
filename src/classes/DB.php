@@ -12,7 +12,7 @@ class DB implements DB_interface
 
     private function getConnection()
     {
-        $pdo = new \PDO();
+        $pdo = new \PDO("mysql:host=localhost;dbname=cm51228_bot", "cm51228_bot", "366326434");
         return $pdo;
     }
 
@@ -81,7 +81,17 @@ class DB implements DB_interface
         $statement = $pdo->prepare($sql);
         $res = $statement->execute([$value]);
 
-        $answer = $this->checkRes($res, "Mysql response = FALSE in write() DB class");
+        $answer = $this->checkRes($res, "Mysql response = FALSE in update() DB class");
+        return $answer;
+    }
+
+    public function delete(string $where)
+    {
+        $sql = "DELETE FROM {$this->params['table']} WHERE {$where}";
+        $pdo = $this->getConnection();
+        $statement = $pdo->prepare($sql);
+        $res = $statement->execute();
+        $answer = $this->checkRes($res, "Mysql response = FALSE in delete() DB class");
         return $answer;
     }
 }

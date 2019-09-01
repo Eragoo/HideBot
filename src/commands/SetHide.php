@@ -30,12 +30,16 @@ class SetHide extends Command
             {
                 $hide = convert_uuencode($arr[2]);
                 $hide_db = $db->get('hide', 'chat_id='.$chat_id);
-                if (empty($hide_db)){
-                    $res = $db->update('hide', $hide, 'chat_id='.$chat_id);
-                    if ($res){
-                        $msg = "Поле записано!";
+                if (empty($hide_db[0]['hide'])){
+                    if (!empty($hide)){
+                        $res = $db->update('hide', $hide, 'chat_id='.$chat_id);
+                        if ($res){
+                            $msg = "Поле записано!";
+                        }else{
+                            $msg = "Произошла занятная ошибка!";
+                        }
                     }else{
-                        $msg = "Произошла занятная ошибка!";
+                        $msg = "Пустое значение не может быть задано!";
                     }
                 }else{
                     $msg = "Поле уже задано!";
