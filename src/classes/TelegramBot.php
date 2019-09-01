@@ -11,7 +11,7 @@ use Telegram\Bot\Api;
 
 class TelegramBot
 {
-    const TOKEN = '658687388:AAEddwfHFShJrFtlcV5r9b0WYEXzijCG-ec';
+    const TOKEN = '';
     private $telegram;
     private $result;
 
