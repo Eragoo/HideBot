@@ -18,19 +18,25 @@ class Add extends Command
             $telegram->sendMessage($chat_id, $msg, 'HTML');
         }else {
             $db = new DB();
-            $hide_db = $db->get('hide', 'chat_id=' . $chat_id);
-            if (!empty($text)) {
-                $hide_db = convert_uudecode($hide_db[0]['hide']);
-                $hide = $hide_db . PHP_EOL . $text;
-                $hide = convert_uuencode($hide);
-                $res = $db->update('hide', $hide, 'chat_id=' . $chat_id);
-                if ($res) {
-                    $msg = "<i>Изменения записаны!</i>";
-                } else {
-                    $msg = "<i>Произошла занятная ошибка!</i>";
+            $db_get_pass = $db->get('pass', 'chat_id='.$chat_id);
+            $db_pass = $db_get_pass[0]['pass'];
+            if (!empty($db_pass)){
+                $hide_db = $db->get('hide', 'chat_id=' . $chat_id);
+                if (!empty($text)) {
+                    $hide_db = convert_uudecode($hide_db[0]['hide']);
+                    $hide = $hide_db . PHP_EOL . $text;
+                    $hide = convert_uuencode($hide);
+                    $res = $db->update('hide', $hide, 'chat_id=' . $chat_id);
+                    if ($res) {
+                        $msg = "<i>Изменения записаны!</i>";
+                    } else {
+                        $msg = "<i>Произошла занятная ошибка!</i>";
+                    }
+                }else {
+                    $msg = "<i>Я не могу записать пустые изменения!</i>";
                 }
-            }else {
-                $msg = "<i>Я не могу записать пустые изменения!</i>";
+            }else{
+                $msg = "<i>Вы не можете хранить текст не создав пароль!</i>";
             }
 
             $telegram->sendMessage($chat_id, $msg, 'HTML');
